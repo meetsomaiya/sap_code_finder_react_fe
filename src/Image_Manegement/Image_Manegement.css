@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.main {
+  display: flex;
+}
+
+.imageMamagementMain{
+  height: 100%;
+  width: 80%;
+  padding: 10px;
+}
+
+
+.search-bar-imagem {
+  height: 60px;
+width: 100%;
+margin: 5px;
+padding: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.search-bar-imagem input {
+  width: 500px;
+  padding: 5px;
+  height: 58px;
+  font-size: 14px;
+  border: 0.5px solid #00978D;
+  border-radius: 5px;
+  background-color: #F3FBFB;
+  margin-right: 10px;
+}
+
+.search-bar-imagem input[type="text"]:focus {
+  outline: none;
+  border-color: #afcceb;
+  background-color: #fff;
+}
+
+.search-bar-imagem button {
+  padding: 15px 30px;
+  font-size: 14px;
+  border: 2px solid #00978D;
+  border-radius: 5px;
+  background-color: #00978D;
+  color: #fff;
+  width: 147px;
+}
+
+.search-bar-imagem button:hover {
+  background-color: #00978D;
+ 
+}
+
+
+
+
+
+.image-table-container {
+  margin: 20px auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 90%;
+}
+
+.Image-table {
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 64px;
+  text-align: center;
+  border-collapse: collapse;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+
+
+
+.Image-table th {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  background-color: #f2f2f2;
+}
+
+.Image-table td {
+  font-size: 13px;
+  text-align: center;
+  font-family: Poppins;
+  font-weight: 500;
+  line-height: 21px;
+  color: #3E3E3E;
+  padding-left: 15px;
+  padding: 10px;
+  border-block-start-width: 1px;
+  border-block-start-color: #D5D5D5;
+
+}
+
+.Image-table tbody tr:nth-child(even) {
+  background-color: #F8FDFD;
+}
+
+.Image-table tbody tr:hover {
+  background-color: #F8FDFD;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.update-btn-model {
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #FF0000;
+  border: 1px solid #FF0000;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-family: 'Poppins';
+  font-size: 12px;
+  line-height: 18px;
+  width: 65px;
+  height: 38px;
+
+}
+
+.reject-btn_model {
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #00781A;
+  border: 1px solid #00781A;
+  border-radius: 4px;
+  cursor: pointer;
+  /* margin-right: 5px; */
+  font-family: 'Poppins';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  width: 65px;
+  height: 38px;
+}
+
+
+.image-manegement {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  width: 115px;
+  height: 76px;
+  border: 2px solid #555555;
+  border-radius: 6px;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.image_size {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.material_image {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.image_manegement {
+  width: 20px;
+}
+
+.image_material {
+  background-color: #DAF6F5;
+  /* padding: 2px 2px; */
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #00978D;
+  /* width: 79px;
+    height: 25px; */
+  padding: 5px 5px 5px 5px;
+  border-radius: 6px;
+
+}
+.zoom-icon-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(68, 68, 68, 0.6); /* Semi-transparent background */
+  backdrop-filter: blur(1px); /* Background blur effect */
+  border-radius: 5px; /* Slight rounding to match image */
+  cursor: pointer;
+}
+
+.zoom-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.zoom-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.zoom-modal-content {
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.zoomed-image {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #f80707;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

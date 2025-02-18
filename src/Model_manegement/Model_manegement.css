@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.main {
+  display: flex;
+}
+
+.modelManagementMain{
+  height: 100%;
+  width: 80%;
+  padding: 10px;
+}
+
+
+.search-bar-modelmanegement {
+  height: 60px;
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.search-bar-modelmanegement input {
+  width: 500px;
+  padding: 5px;
+  height: 58px;
+  font-size: 14px;
+  border: 0.5px solid #00978D;
+  border-radius: 5px;
+  background-color: #F3FBFB;
+  margin-right: 10px;
+}
+
+.search-bar-modelmanegement input[type="text"]:focus {
+  outline: none;
+  border-color: #afcceb;
+  background-color: #fff;
+}
+
+.search-bar-modelmanegement button {
+  padding: 15px 30px;
+  font-size: 14px;
+  border: 2px solid #00978D;
+  border-radius: 5px;
+  background-color: #00978D;
+  color: #fff;
+  width: 147px;
+}
+
+.search-bar-modelmanegement button:hover {
+  background-color: #00978D;
+
+}
+
+
+.modelm-table-container {
+  margin: 20px auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.modelm-table {
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 64px;
+  text-align: center;
+  border-collapse: collapse;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+
+.modelm-table th {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  background-color: #f2f2f2;
+}
+
+
+.modelm-table td {
+  font-weight: 500;
+  font-size: 18px;
+  color: #3E3E3E;
+  padding: 10px;
+  border-block-start-width: 1px;
+  border-block-start-color: #D5D5D5;
+}
+
+.modelm-table tbody tr:hover {
+  background-color: #bec0c0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modelXb{
+  margin: 4px 8px ;
+  color:red;
+  font-size: medium;
+}
+
+
+.ReplacedForm {
+  /* display: flex; */
+  /* align-items: center; */
+  /* flex-wrap: wrap; */
+  min-width: 80%;
+  height: 100px;
+  border: 1px solid rgb(223, 216, 216);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f01111;
+  margin:0px 30px;
+}
+
+/* .model_update {
+  width: 20%;
+} */
+
+.ReplacedForm_container {
+  background-color: #757070;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 5px;
+  color: #3a3939;
+  /* margin-left: 20px; */
+}
+
+
+
+.modelm-management-container {
+  margin: 200px;
+  border-radius: 8px;
+  /* overflow: hidden; */
+  border: 1px solid #ddd;
+  margin-top: 50px;
+  margin-left: 280px;
+  width: 1025px;
+}
+
+
+
+
+.update-btn-model {
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #FF0000;
+  border: 1px solid #FF0000;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-family: 'Poppins';
+  font-size: 12px;
+  line-height: 18px;
+  width: 65px;
+  height: 38px;
+
+}
+
+.reject-btn_model {
+  padding: 8px 12px;
+  background-color: #fff;
+  color: #00781A;
+  border: 1px solid #00781A;
+  border-radius: 4px;
+  cursor: pointer;
+  /* margin-right: 5px; */
+  font-family: 'Poppins';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  width: 65px;
+  height: 38px;
+}
+
+
+.model-m {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 100px;
+  border: 1px solid rgb(223, 216, 216);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f01111;
+  margin-left: 40px;
+}
+
+/* .model_cld {
+  width: 17%;
+} */
+
+.model_container-m {
+  background-color: #F3F3F3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 5px;
+  color: #3E3E3E;
+  /* margin-left: 20px; */
+}
+
+.material_model{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.model_material{
+  background-color: #DAF6F5;
+  /* padding: 2px 2px; */
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #00978D;
+  /* width: 79px;
+  height: 25px; */
+  padding: 5px 7px 5px 7px;
+  border-radius: 6px;
+}

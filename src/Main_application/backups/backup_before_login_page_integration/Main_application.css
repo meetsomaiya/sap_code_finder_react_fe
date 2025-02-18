@@ -1,0 +1,403 @@
+/* General styling */
+
+.main_button {
+  margin-left: 1150px;
+  margin-top: 10px;
+}
+
+.main_button_btn {
+  border: 1px solid #009F89;
+  width: 151px;
+  height: 48px;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: Poppins;
+  line-height: 18px;
+  font-size: 14px;
+  color: #009F89;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.search-containermain {
+  justify-content: center;
+  margin: 0px 170px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px;
+  border: 0.5px solid #00978D;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-top: 20px;
+  height: 58px;
+  width: 792px;
+  background-color: #F3FBFB;
+  max-width: 792px;
+}
+
+/* Flexbox for main container */
+.main-container {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 90%;
+  margin: 40px 80px;
+}
+
+/* Main table styling */
+.mainapplication-container {
+  flex: 1;
+  margin-right: 10px;
+  overflow-x: auto;
+  border: 1px solid #D5D5D5;
+  border-radius: 10px;
+  overflow: hidden;
+  /* width: ; */
+}
+
+.Main_application {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+
+}
+
+.Main_application th {
+  /* margin-left: 20px; */
+  background-color: #F3FBFB;
+  color: #3E3E3E;
+  font-family: Poppins;
+  font-weight: 600;
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Main_application td {
+  border-block-start-width: 1px;
+  border-block-start-color: #f3f2f3;
+  font-family: Poppins;
+  font-weight: 400;
+  /* padding-left: 20px; */
+  color: #3E3E3E;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+.Main_application tbody tr {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Main_application tbody tr:hover {
+  background-color: #F3FBFB;
+}
+
+.Main_application tbody tr:nth-child(even) {
+  background-color: #F8FDFD;
+}
+
+/* .Main_application th:nth-child(5) {
+  text-align: right;
+  padding-right: 140px;
+}
+
+.Main_application th:nth-child(2) {
+  text-align: right;
+  padding-right: 30px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.model_container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.material_mainapplication {
+  background-color: #DAF6F5;
+  /* padding: 2px 2px; */
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #00978D;
+  /* width: 79px;
+  height: 25px; */
+  padding: 5px 7px 5px 7px;
+  border-radius: 6px;
+}
+
+.model-background {
+  background-color: #F3F3F3;
+  /* Replace with your desired color */
+}
+
+
+
+
+.search-button {
+  background-color: #00978D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 13px, 45px, 13px, 45px;
+  cursor: pointer;
+  width: 147px;
+  height: 58px;
+  max-width: 200px;
+}
+
+.search-button:hover {
+  background-color: #007f73;
+}
+
+
+
+/* Additional table styling */
+.additional-code-container {
+  flex: 1;
+  max-width: 40%;
+  overflow-x: auto;
+  border: 1px solid #D5D5D5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.additional-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.additional-table th {
+  padding: 8px;
+  background-color: #F3FBFB;
+  color: #3E3E3E;
+  font-family: Poppins;
+  font-weight: 600;
+  padding: 8px;
+  font-size: 16px;
+
+}
+
+.additional-table td {
+  border-block-end-width: 1px;
+  border-block-end-color: #D5D5D5;
+  font-family: Poppins;
+  font-weight: 400;
+  padding-left: 20px;
+  color: #3E3E3E;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+
+/* Miscellaneous styling */
+.model_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.material_mainapplication {
+  cursor: pointer;
+  color: #00978D;
+  text-decoration: underline;
+}
+
+
+
+
+.modelm_parent {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  height: 100px;
+  border: 1px solid rgb(223, 216, 216);
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f01111;
+  /* margin: 0px 30px; */
+}
+
+.modelm_container {
+  /* background-color: #F3F3F3; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 5px;
+  color: #3E3E3E;
+  margin-left: 30px;
+}
+
+
+.action-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.excel-icon {
+  width: 36px;
+  height: 34px;
+}
+
+.excel-icon:hover {
+  cursor: pointer;
+}
+
+.excel-icon:active {
+  transform: scale(0.9);
+}
+
+.pdf-icon {
+  width: 28px;
+  height: 30px;
+  /* margin-left: 20px; */
+}
+
+.pdf-icon:hover {
+  cursor: pointer;
+}
+
+.pdf-icon:active {
+  transform: scale(0.9);
+}
+
+.separator {  
+  width: 2px;
+  height: 35px;
+  background-color: #9D9D9D;
+  margin: 0 7px;
+}
+
+.main-application-image {
+  display: flex;
+  align-items: center;
+  width: 115px;
+  height: 76px;
+  border: 2px solid #555555;
+  border-radius: 6px;
+  margin-left: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.image_size {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text_upload {
+  color: #00781A;
+  font-size: 10px;
+  font-family: poppins;
+}
+.upload-button{
+  width: 70px;
+  color: #00781A;
+}
+.icon-size{
+  width: 10px;
+}
+
+.image_size {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.main-width {
+  width: 35%;
+}
+
+.main_application-width {
+  width: 20%;
+}
+
+.zoom-icon-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  /* Semi-transparent background */
+  backdrop-filter: blur(5px);
+  /* Background blur effect */
+  border-radius: 10%;
+  /* Circular background */
+  cursor: pointer;
+  padding: 10px !important;
+}
+
+.zoom-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.zoomed-image {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #aaa;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 30px;
+  /* Specific width */
+  height: 30px;
+  /* Specific height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  /* Optional: make it circular */
+  background: rgba(255, 255, 255, 0.8);
+  /* Background color */
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.no-underline {
+  text-decoration: none;
+}

@@ -1,0 +1,239 @@
+.udatem-modal{
+  display: none;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  /* Black w/ opacity */
+}
+.udatem-modal.show{
+  display: block; /* Show the modal */
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.udatem-modal-dialog{
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  /* padding: 20px; */
+  border: 1px solid #888;
+  border-radius: 0.8rem;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.udatem-modal-header{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.udatem-close{
+/* position:relative; */
+right: 0;
+left: 0;
+margin-right: 0;
+height: 30px;
+color: #fff;
+width: 40px;
+border-radius: 0 8px 0 0 ;
+background-color: red;
+font-size: 1rem;
+cursor: pointer;
+}
+
+
+.update-model-container_sec {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+    /* overflow: hidden; */
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.modelupdate-table-container_sec {
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.modelupdate-table_sec {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.modelupdate-table_sec th {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #000;
+  background-color: #f2f2f2;
+}
+
+.modelupdate-table_sec td {
+  font-weight: 500;
+  font-size: 13px;
+  color: #3E3E3E;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 10px;
+}
+
+.modelupdate-table_sec tbody tr:nth-child(even) {
+  background-color: #F8FDFD;
+}
+
+.modelupdate-table_sec tbody tr:hover {
+  background-color: #E0F7F7;
+}
+
+.update-search_sec {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search-bar-model_sec input{
+  width: 700px;
+  padding: 16px;
+  font-size: 14px;
+  border: 0.5px solid #00978D;
+  border-radius: 5px;
+  background-color: #F3FBFB;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.search-bar-model_sec input[type="text"]:focus {
+  outline: none;
+  border-color: #00781A;
+  background-color: #fff;
+}
+
+.search-bar-model_sec button {
+  padding: 15px 30px;
+  font-size: 14px;
+  border: 2px solid #00978D;
+  border-radius: 5px;
+  background-color: #00978D;
+  color: #fff;
+  width: 147px;
+  cursor: pointer;
+}
+
+.search-bar-model_sec button:hover {
+   background-color: #00978D;
+  /* Adjust the background color on hover */
+  border-color: #00978D;
+}
+
+.model_update_sec {
+  width: 20%;
+}
+
+.ReplacedForm_sec {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ReplacedForm_container_sec {
+  background-color: #DAF6F5;
+  padding: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00978D;
+  margin: 5px;
+  border-radius: 4px;
+}
+
+.dropdown_sec select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #00978D;
+  border-radius: 5px;
+  background-color: #F3FBFB;
+  color: #3E3E3E;
+  font-family: 'Poppins', sans-serif;
+}
+
+.update-btn-model_sec {
+  padding: 8px;
+  background-color: #fff;
+  color: #00978D;
+  border: 1px solid #00978D;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  margin: 10px auto;
+}
+
+.update-btn-model_sec:hover {
+  background-color: #00978D;
+  color: #fff;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.modal button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
+}
+
+
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.modal-header .close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.modal-body {
+  padding-top: 10px;
+}

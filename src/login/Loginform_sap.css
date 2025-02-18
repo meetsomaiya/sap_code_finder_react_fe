@@ -1,0 +1,162 @@
+.relative {
+  position: relative;
+}
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.h-screen {
+  height: 100vh;
+}
+.w-screen {
+  width: 100vw;
+}
+.absolute {
+  position: absolute;
+}
+.aspect-w-16 {
+  aspect-ratio: 16 / 9;
+}
+.aspect-h-9 {
+  aspect-ratio: 16 / 9;
+}
+.h-full {
+  height: 100%;
+}
+.w-full {
+  width: 100%;
+}
+.bg-slate-300 {
+  background-color: #cbd5e1;
+}
+.bg-cover {
+  background-size: cover;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-negative-10 {
+  z-index: -10;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.filter {
+  filter: none;
+}
+.object-cover {
+  object-fit: cover;
+}
+.bg-gradient-to-r {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1));
+}
+.from-white-10 {
+  --tw-gradient-from: rgba(255, 255, 255, 0.1);
+}
+.via-black-60 {
+  --tw-gradient-stops: rgba(0, 0, 0, 0.6);
+}
+.to-black {
+  --tw-gradient-to: rgba(0, 0, 0, 1);
+}
+@media (min-width: 640px) {
+  .sm\:justify-end {
+      justify-content: flex-end;
+  }
+  .sm\:pr-32 {
+      padding-right: 8rem;
+  }
+}
+.border {
+  border: 1px solid #e5e7eb;
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.rounded {
+  border-radius: 0.375rem;
+}
+.w-96 {
+  width: 24rem;
+}
+.h-\[420px\] {
+  height: 420px;
+}
+.flex-col {
+  flex-direction: column;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-lg {
+  font-size: 1.125rem;
+}
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: white;
+  margin-bottom: 1rem;
+}
+.button {
+  width: 100%;
+  height: 9vh;
+  padding: 0.5rem;
+  background-color: #00978D;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+.button:hover {
+  background-color:#00978D;
+}
+.logo {
+  width: 213px;
+  height: 48px;
+  margin-bottom: 2rem;
+}
+.label {
+  align-self: flex-start;
+  color: #A6A6A6;
+  margin-bottom: 0.25rem;
+}
+.sap-finder-logo {
+  width: 26px;
+  height: 25px;
+}
+.logo {
+  border: 1px solid #86C4FF;
+  background: linear-gradient(to left, #4B91D3, #E3E7EF);
+  padding: 10px 18px;
+  width: 210px;
+  height: 53px;
+  border-radius: 6px;
+  /* margin-left: 15px; */
+  /* margin-right: 10px; */
+}
+ 
+.logo p {
+  font-weight: 700;
+  color: #062D51;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Poppins;
+}

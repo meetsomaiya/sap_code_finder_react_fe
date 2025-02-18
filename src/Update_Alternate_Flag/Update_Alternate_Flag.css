@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.main {
+  display: flex;
+}
+
+.excel-upload-container {
+  height: 100%;
+  width: 80%;
+  margin: 2% auto;
+  padding: 2%;
+}
+
+.excel-upload-header {
+  text-align: left;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  /* font-size: 20px; */
+  font-weight: 500;
+  color: #848484;
+  line-height: 30px;
+}
+
+.dotted-container {
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 16vh; /* Set your desired height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Add this property */
+}
+
+/* Styles for the file input */
+.excel-upload-input {
+  display: none; /* Hide the default file input */
+}
+
+/* Styles for the custom file input container */
+.custom-file-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles for the custom file input button */
+.custom-file-input-button {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #00978D;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  /* background-color: #007bff; */
+  color: #00978D;
+  display: flex;
+}
+
+/* Styles for the upload button */
+.excel-upload-button {
+  padding: 14px, 48px;
+  background-color: #00978D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 154px;
+  height: 52px;
+}
+
+/* Styles for the upload button on hover */
+.excel-upload-button:hover {
+  background-color: #00978D;
+}
+/* Styles for the file icon */
+.file-icon {
+  width: 20px; /* Set your desired width */
+  height: 20px; /* Set your desired height */
+  margin-right: 10px; /* Adjust spacing between icon and text */
+}
+.spantext{
+  font-size:  Poppins;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #848484;
+  margin-left: 33px;
+}
+
+.formatTable{
+  margin: 20px;
+  padding: 10px;
+}
+.formatTable h1{
+color: red;
+}
+
+
+.alternateTable {
+  margin: 20px;
+  height: 15vh;
+  width: 30vw;
+  border: 2px solid #00978D; /* Updated border thickness */
+  overflow: hidden;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.alternateTable table {
+  width: 100%;
+  height: 100%;
+}
+
+
+.alternateTable {
+  margin: 20px;
+  height: 15vh;
+  width: 30vw;
+  border: 2px solid #00978D; /* Updated border thickness */
+  overflow: hidden;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.alternateTable table {
+  width: 100%;
+  height: 100%;
+}
+
+
+.alternateTable table td,
+.alternateTable table th {
+  border: 1px solid #00978D; /* Add border to each cell */
+   /* Add padding for better spacing */
+}
+
+.alternateTable table th {
+  height: 5vmin;
+  margin: auto;
+  width: fit-content;
+  color: #fff;
+  background-color: #00978D;
+}
+
+.formatTable h5 {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+
+.alternateTable table th {
+  height: 5vmin;
+  margin: auto;
+  width: fit-content;
+  color: #fff;
+  background-color: #00978D;
+}
+
+.formatTable h5 {
+  margin-bottom: 4px;
+  font-size: 14px;
+}

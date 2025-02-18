@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2ef3fb9c.css",
+    "main.js": "/static/js/main.49575593.js",
+    "static/media/figma_design.mp4": "/static/media/figma_design.237f3fe1bdd8a5b28889.mp4",
+    "static/media/images 2.png": "/static/media/images 2.e22b57d29cfbacbd8f5a.png",
+    "static/media/products7.jpg": "/static/media/products7.2360885f62d58b9eac5f.jpg",
+    "static/media/image.png": "/static/media/image.e8d70e84c46a93adc3e7.png",
+    "index.html": "/index.html",
+    "main.2ef3fb9c.css.map": "/static/css/main.2ef3fb9c.css.map",
+    "main.49575593.js.map": "/static/js/main.49575593.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ef3fb9c.css",
+    "static/js/main.49575593.js"
+  ]
+}
