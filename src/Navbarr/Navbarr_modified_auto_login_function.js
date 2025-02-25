@@ -11,13 +11,10 @@ import Update_model_sec from "../Dropdown/Update_model_sec/Update_model_sec";
 import { BASE_URL } from "../config";
 
 // Utility function to get cookie value by name
-// Utility function to get cookie value by name and decode it
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) {
-    return decodeURIComponent(parts.pop().split(";").shift()); // ✅ Decode value
-  }
+  if (parts.length === 2) return parts.pop().split(";").shift();
   return "";
 };
 
@@ -42,8 +39,8 @@ const Navbar = () => {
     let url = location.pathname.split("/mainapplication")[1];
     setUrlname(url);
 
-    // ✅ Fetch the correct "name" from cookies
-    const storedUserName = getCookie("name"); 
+    // Fetch userName from cookies
+    const storedUserName = getCookie("userName");
     if (storedUserName) {
       setUserName(storedUserName);
     }
@@ -73,7 +70,7 @@ const Navbar = () => {
         // Clear cookies
         document.cookie = `AdminSessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         document.cookie = `UserSessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-        document.cookie = `name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`; // ✅ Clearing "name"
+        document.cookie = `userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 
         // Clear local storage
         localStorage.clear();
@@ -100,7 +97,7 @@ const Navbar = () => {
         <div className={NavStyles.dropdown}>
           <div className={NavStyles.profileI}>{getFirstNameInitial(userName)}</div>
           <div className={NavStyles.dropdown_content}>
-            <Link to="#">{userName}</Link> {/* ✅ Displays correct name */}
+            <Link to="#">{userName}</Link>
             <Link to="/login" className={NavStyles.logoutA} onClick={handleLogout}>
               <img src={logout} alt="Logout" /> Logout
             </Link>

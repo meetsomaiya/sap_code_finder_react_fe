@@ -11,8 +11,6 @@ import Navbar from '../Navbarr/Navbarr'
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import moment from 'moment-timezone';
-
 import { BASE_URL } from '../config';
 
 const style = {
@@ -54,95 +52,6 @@ export default function MainApplication() {
     const [emailId, setEmailId] = useState('');
 
     const navigate = useNavigate();
-
-    let entryTime = null;  // Store the entry time (when user stepped into the page)
-let exitTime = null;   // Store the exit time (when user left the page)
-
-const sendCookiesToBackend = async () => {
-  const cookies = document.cookie.split(';').reduce((acc, cookie) => {
-    const [key, value] = cookie.trim().split('=');
-    acc[key] = decodeURIComponent(value);
-    return acc;
-  }, {});
-
-  // Get the current pathname when using HashRouter
-  const pathname = window.location.hash.replace(/^#/, '');
-
-  // Prepare the data to send to the backend
-  const cookieData = {
-    name: cookies.name || 'Not Set',
-    domain_id: cookies.domain_id || 'Not Set',
-    pathname: pathname,
-    entryTime: entryTime,
-    exitTime: exitTime,
-  };
-
-  console.log('Validating data before sending to backend:', JSON.stringify(cookieData, null, 2));
-
-  console.log('Sending the following cookie data to backend:', cookieData);
-
-  try {
-    const response = await fetch(`${BASE_URL}/api/heartbeat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cookieData),
-    });
-
-    if (response.ok) {
-      console.log('Cookie data sent to backend successfully.');
-    } else {
-      console.error('Error sending cookie data to backend:', response.status);
-    }
-  } catch (error) {
-    console.error('Failed to send cookie data:', error);
-  }
-};
-
-useEffect(() => {
-  // Set entry time when the page loads
-  entryTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-  console.log(`Entry Time (IST): ${entryTime}`);
-
-  // Add event listener for beforeunload (browser close / tab close)
-  const handleBeforeUnload = () => {
-    exitTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`Exit Time (IST): ${exitTime}`);
-    sendCookiesToBackend();
-  };
-
-  window.addEventListener('beforeunload', handleBeforeUnload);
-
-  return () => {
-    window.removeEventListener('beforeunload', handleBeforeUnload);
-  };
-}, []);
-
-useEffect(() => {
-  const handlePathChange = () => {
-    exitTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`Exit Time (IST): ${exitTime}`);
-    sendCookiesToBackend();
-  };
-
-  const windowHistoryPushState = window.history.pushState;
-  window.history.pushState = function (...args) {
-    handlePathChange();
-    return windowHistoryPushState.apply(this, args);
-  };
-
-  const windowHistoryReplaceState = window.history.replaceState;
-  window.history.replaceState = function (...args) {
-    handlePathChange();
-    return windowHistoryReplaceState.apply(this, args);
-  };
-
-  return () => {
-    window.history.pushState = windowHistoryPushState;
-    window.history.replaceState = windowHistoryReplaceState;
-  };
-}, []);
 
 
 
@@ -193,8 +102,7 @@ useEffect(() => {
 
                     // Fetch last procured date for each material in the response from the first API
                     dataArray.forEach(item => {
-                        // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
-                        fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(item.material_code)}`)
+                        fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
                             .then(response => response.json())
                             .then(procuredData => {
                                 setLastProcuredData(prevState => ({
@@ -212,8 +120,7 @@ useEffect(() => {
                     });
                 } else {
                     // If no data is returned from the first API, call the second API with the original material code
-                    // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                    fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                    fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                         .then(response => response.json())
                         .then(procuredData => {
                             setLastProcuredData(prevState => ({
@@ -233,8 +140,7 @@ useEffect(() => {
             .catch(error => {
                 console.error('Error fetching alternate table data:', error);
                 // If the first API call fails, still attempt to fetch data from the second API
-                // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                     .then(response => response.json())
                     .then(procuredData => {
                         setLastProcuredData(prevState => ({
@@ -539,435 +445,108 @@ const handleExcelDownload = (materialCode) => {
             //     }
             // };
 
-        //     useEffect(() => {
-        //         const extractDomainIdFromUrl = () => {
-        //             try {
-        //                 const hash = window.location.hash;
-        //                 console.log('Window location hash:', hash);
+            useEffect(() => {
+                const extractDomainIdFromUrl = () => {
+                    try {
+                        const hash = window.location.hash;
+                        console.log('Window location hash:', hash);
         
-        //                 const queryString = hash.split('?')[1];
-        //                 if (!queryString) {
-        //                     console.error('Hash does not contain query parameters');
-        //                     return null;
-        //                 }
+                        const queryString = hash.split('?')[1];
+                        if (!queryString) {
+                            console.error('Hash does not contain query parameters');
+                            return null;
+                        }
         
-        //                 console.log('Query string:', queryString);
+                        console.log('Query string:', queryString);
         
-        //                 const urlParams = new URLSearchParams(queryString);
-        //                 const domainIdFromUrl = urlParams.get('domain_id');
-        //                 console.log('Domain ID from URL:', domainIdFromUrl);
+                        const urlParams = new URLSearchParams(queryString);
+                        const domainIdFromUrl = urlParams.get('domain_id');
+                        console.log('Domain ID from URL:', domainIdFromUrl);
         
-        //                 return domainIdFromUrl;
-        //             } catch (error) {
-        //                 console.error('Error extracting domain_id:', error);
-        //                 return null;
-        //             }
-        //         };
-        
-        //         const extractedDomainId = extractDomainIdFromUrl();
-        //         console.log('Extracted Domain ID:', extractedDomainId);
-        //         setDomainId(extractedDomainId);
-        
-        //     const fetchUserData = () => {
-        //         if (extractedDomainId) {
-        //             const apiUrl = `${BASE_URL}/api/api_for_auto_login?action=auto_login&domain_id=${extractedDomainId}`;
-            
-        //             console.log("API URL:", apiUrl); // Log the URL to verify
-            
-        //             fetch(apiUrl, { method: "GET" })
-        //                 .then((response) => {
-        //                     console.log("API Response Status:", response.status);
-        //                     if (!response.ok) {
-        //                         throw new Error("Network response was not ok");
-        //                     }
-            
-        //                     return response.json();
-        //                 })
-        //                 .then((data) => {
-        //                     console.log("Received data from API:", data);
-            
-        //                     if (data) {
-        //                         // Extract data from API response
-        //                         const {
-        //                             DomainId,
-        //                             Name,
-        //                             EmailId,
-        //                             Department,
-        //                             ContactNumber,
-        //                             MobileNumber,
-        //                             EmpGrade,
-        //                             IsActive,
-        //                         } = data;
-            
-        //                         // ✅ Store values in cookies WITHOUT encoding
-        //                         document.cookie = `domain_id=${DomainId}; path=/`;
-        //                         document.cookie = `userName=${Name}; path=/`;
-        //                         document.cookie = `email=${EmailId}; path=/`;
-        //                         document.cookie = `department=${Department}; path=/`;
-        //                         document.cookie = `contactNumber=${ContactNumber}; path=/`;
-        //                         document.cookie = `mobileNumber=${MobileNumber}; path=/`;
-        //                         document.cookie = `empGrade=${EmpGrade}; path=/`;
-        //                         document.cookie = `isActive=${IsActive}; path=/`;
-            
-        //                         console.log("Session cookies set successfully!");
-            
-        //                         // ✅ Log all cookies to verify
-        //                         console.log("All Cookies:", document.cookie);
-            
-        //                         // Redirect to main application
-        //                         navigate("/Main_application/Main_application");
-        //                     } else {
-        //                         console.error("Invalid API response format");
-        //                     }
-        //                 })
-        //                 .catch((error) => {
-        //                     console.error("API Error:", error);
-        //                 });
-        //         } else {
-        //             console.error("Domain ID not found in URL");
-        //         }
-        //     };
-            
-    
-        //     fetchUserData();
-    
-        //     const pollingInterval = setInterval(() => {
-        //         const storedUserName = localStorage.getItem('user-name');
-        //         if (storedUserName !== userName) {
-        //             fetchUserData();
-        //         }
-        //     }, 5000);
-    
-        //     return () => clearInterval(pollingInterval);
-        // }, [userName, navigate]);
-
-        const extractDomainIdFromUrl = () => {
-            try {
-              const hash = window.location.hash;
-              console.log('Window location hash:', hash);
-          
-              // Ensure hash is present and contains query parameters
-              if (!hash || !hash.includes('?')) {
-                console.error('Hash does not contain query parameters');
-                
-                // Call checkAdminIdAndRedirect if no query parameters are found
-                checkAdminIdAndRedirect();
-                
-                return null;
-              }
-          
-              // Split the hash to get query string after the first '?'
-              const [path, queryString] = hash.split('?');
-              if (!queryString) {
-                console.error('No query parameters in hash');
-                
-                // Call checkAdminIdAndRedirect if query string is empty
-                checkAdminIdAndRedirect();
-                
-                return null;
-              }
-          
-              console.log('Query string:', queryString);
-          
-              // Parse the query string using URLSearchParams
-              const urlParams = new URLSearchParams(queryString);
-          
-              // Get the domain_id from the query string
-              const domainIdFromUrl = urlParams.get('domain_id');
-              console.log('Encoded Domain ID from URL:', domainIdFromUrl);
-          
-              if (domainIdFromUrl) {
-                // Decode the Base64 encoded domain_id
-                const decodedDomainId = atob(domainIdFromUrl);
-                console.log('Decoded Domain ID:', decodedDomainId);
-          
-                // Set the decoded domain_id to the state
-                // setDomainId(decodedDomainId);
-                setDomainId(domainIdFromUrl);
-          
-                // Set the domain_id as a cookie
-                document.cookie = `domain_id=${decodedDomainId}; path=/`;
-          
-                // Send the AJAX request to the API for auto login
-                // sendAutoLoginRequest(decodedDomainId);
-
-                sendAutoLoginRequest(domainIdFromUrl);
-          
-                // return decodedDomainId;
-
-                return domainIdFromUrl;
-              } else {
-                console.error('domain_id not found in URL');
-                
-                // Call checkAdminIdAndRedirect if domain_id is missing
-                checkAdminIdAndRedirect();
-                
-                return null;
-              }
-            } catch (error) {
-              console.error('Error extracting or decoding domain_id:', error);
-              
-              // Call checkAdminIdAndRedirect in case of any error
-              checkAdminIdAndRedirect();
-              
-              return null;
-            }
-          };
-          
-          const checkAdminIdAndRedirect = () => {
-            const getCookie = (name) => {
-              const value = `; ${document.cookie}`;
-              const parts = value.split(`; ${name}=`);
-              if (parts.length === 2) return parts.pop().split(';').shift();
-            };
-          
-            const adminId = getCookie('domain_id'); // Retrieve the adminId from cookies
-            if (!adminId) {
-             window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin'; 
-            }
-          };
-
-        //   const sendAutoLoginRequest = async (domainId) => {
-        //     try {
-        //       console.log('📤 Sending domain ID as received:', domainId);
-          
-        //       const requestUrl = `${BASE_URL}/api/api_for_auto_login?domain_id=${encodeURIComponent(domainId)}`;
-          
-        //       console.log('📤 Sending request to:', requestUrl);
-          
-        //       const response = await fetch(requestUrl, {
-        //         method: 'GET',
-        //         headers: { 'Content-Type': 'application/json' }
-        //       });
-          
-        //       console.log('📥 Response status:', response.status);
-          
-        //       if (!response.ok) {
-        //         throw new Error(`HTTP error! Status: ${response.status}`);
-        //       }
-          
-        //       const userData = await response.json();
-        //       console.log('📩 Received user data:', userData);
-          
-        //       // Redirect if response is empty
-        //       if (!userData || Object.keys(userData).length === 0) {
-        //         console.error('🚨 Empty response received. Redirecting to sign-in page.');
-        //       //  window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-        //         return;
-        //       }
-          
-        //       // Logging all cookies being set
-        //       console.log('🍪 Setting cookies:', {
-        //         userId: userData.id,
-        //         domain_id: userData.domain_id,
-        //         name: userData.name,
-        //         email: userData.email,
-        //         state: userData.state,
-        //         area: userData.area,
-        //         site: userData.site,
-        //         access: userData.access,
-        //         isadmin: userData.isadmin
-        //       });
-          
-        //       // Set cookies
-        //       document.cookie = `userId=${encodeURIComponent(userData.id)}; path=/`;
-        //       document.cookie = `domain_id=${encodeURIComponent(userData.domain_id)}; path=/`;
-        //       document.cookie = `name=${encodeURIComponent(userData.name)}; path=/`;
-        //       document.cookie = `email=${encodeURIComponent(userData.email)}; path=/`;
-        //       document.cookie = `state=${encodeURIComponent(userData.state)}; path=/`;
-        //       document.cookie = `area=${encodeURIComponent(userData.area)}; path=/`;
-        //       document.cookie = `site=${encodeURIComponent(userData.site)}; path=/`;
-        //       document.cookie = `access=${encodeURIComponent(userData.access)}; path=/`;
-        //       document.cookie = `isadmin=${userData.isadmin}; path=/`;
-          
-        //       // Delay for 100ms to ensure cookies are set, then reload
-        //     //   setTimeout(() => {
-        //     //     console.log('🔄 Reloading page...');
-        //     //     handleReload();
-        //     //   }, 100);
-          
-        //     } catch (error) {
-        //       console.error('❌ Auto login request failed:', error);
-        //      // window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-        //     }
-        //   };
-
-        // const sendAutoLoginRequest = async (domainId) => {
-        //     try {
-        //       console.log('📤 Sending domain ID as received:', domainId);
-          
-        //       const requestUrl = `${BASE_URL}/api/api_for_auto_login?domain_id=${encodeURIComponent(domainId)}`;
-        //       console.log('📤 Sending request to:', requestUrl);
-          
-        //       const response = await fetch(requestUrl, {
-        //         method: 'GET',
-        //         headers: { 'Content-Type': 'application/json' }
-        //       });
-          
-        //       console.log('📥 Response status:', response.status);
-          
-        //       if (!response.ok) {
-        //         throw new Error(`HTTP error! Status: ${response.status}`);
-        //       }
-          
-        //       const userData = await response.json();
-        //       console.log('📩 Received user data:', userData);
-          
-        //       // Redirect if response is empty
-        //       if (!userData || Object.keys(userData).length === 0) {
-        //         console.error('🚨 Empty response received. Redirecting to sign-in page.');
-        //         window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-        //         return;
-        //       }
-          
-        //       // Logging all cookies being set
-        //       console.log('🍪 Setting cookies:', {
-        //         userId: userData.id,
-        //         domain_id: userData.domain_id,
-        //         name: userData.name,
-        //         email: userData.email,
-        //         state: userData.state,
-        //         area: userData.area,
-        //         site: userData.site,
-        //         access: userData.access,
-        //         isadmin: String(userData.isadmin) // Ensure boolean values are stored as strings
-        //       });
-          
-        //       // Set cookies
-        //       document.cookie = `userId=${encodeURIComponent(userData.id)}; path=/`;
-        //       document.cookie = `domain_id=${encodeURIComponent(userData.domain_id)}; path=/`;
-        //       document.cookie = `name=${encodeURIComponent(userData.name)}; path=/`;
-        //       document.cookie = `email=${encodeURIComponent(userData.email)}; path=/`;
-        //       document.cookie = `state=${encodeURIComponent(userData.state)}; path=/`;
-        //       document.cookie = `area=${encodeURIComponent(userData.area)}; path=/`;
-        //       document.cookie = `site=${encodeURIComponent(userData.site)}; path=/`;
-        //       document.cookie = `access=${encodeURIComponent(userData.access)}; path=/`;
-        //       document.cookie = `isadmin=${String(userData.isadmin)}; path=/`; // Ensuring string format
-          
-        //       // Delay for 100ms to ensure cookies are set, then reload
-        //     //   setTimeout(() => {
-        //     //     console.log('🔄 Reloading page...');
-        //     //     window.location.reload();
-        //     //   }, 100);
-          
-        //     } catch (error) {
-        //       console.error('❌ Auto login request failed:', error);
-        //       window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-        //     }
-        //   };
-          
-
-        const sendAutoLoginRequest = async (domainId) => {
-            try {
-                console.log('📤 Sending domain ID as received:', domainId);
-        
-                const requestUrl = `${BASE_URL}/api/api_for_auto_login?domain_id=${encodeURIComponent(domainId)}`;
-                console.log('📤 Sending request to:', requestUrl);
-        
-                const response = await fetch(requestUrl, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-        
-                console.log('📥 Response status:', response.status);
-        
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-        
-                const userData = await response.json();
-                console.log('📩 Received user data:', userData);
-        
-                // Redirect if response is empty
-                if (!userData || Object.keys(userData).length === 0) {
-                    console.error('🚨 Empty response received. Redirecting to sign-in page.');
-                    window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-                    return;
-                }
-        
-                // Logging all cookies being set
-                console.log('🍪 Setting cookies:', {
-                    domain_id: userData.DomainId,
-                    name: userData.Name,
-                    email: userData.EmailId,
-                    department: userData.Department,
-                    contact_number: userData.ContactNumber,
-                    mobile_number: userData.MobileNumber,
-                    emp_grade: userData.EmpGrade,
-                    is_active: String(userData.IsActive), // Convert boolean to string
-                    isadmin: "false" // API does not return `isadmin`, defaulting to "false"
-                });
-        
-                // Set cookies
-                document.cookie = `domain_id=${encodeURIComponent(userData.DomainId)}; path=/`;
-                document.cookie = `name=${encodeURIComponent(userData.Name)}; path=/`;
-                document.cookie = `email=${encodeURIComponent(userData.EmailId)}; path=/`;
-                document.cookie = `department=${encodeURIComponent(userData.Department)}; path=/`;
-                document.cookie = `contact_number=${encodeURIComponent(userData.ContactNumber)}; path=/`;
-                document.cookie = `mobile_number=${encodeURIComponent(userData.MobileNumber)}; path=/`;
-                document.cookie = `emp_grade=${encodeURIComponent(userData.EmpGrade)}; path=/`;
-                document.cookie = `is_active=${String(userData.IsActive)}; path=/`; // Ensure boolean is string
-                document.cookie = `isadmin=false; path=/`; // Defaulting to false
-        
-                // ✅ Ensure all cookies are set before reloading
-                setTimeout(() => {
-                    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
-                        const [key, value] = cookie.split("=");
-                        acc[key] = value;
-                        return acc;
-                    }, {});
-        
-                    const requiredCookies = [
-                        "domain_id",
-                        "name",
-                        "email",
-                        "department",
-                        "contact_number",
-                        "mobile_number",
-                        "emp_grade",
-                        "is_active",
-                        "isadmin"
-                    ];
-        
-                    const allCookiesSet = requiredCookies.every(cookie => cookies[cookie]);
-        
-                    if (allCookiesSet) {
-                        console.log("✅ All cookies are set. Reloading...");
-                        handleReload();
-                    } else {
-                        console.warn("⚠️ Some cookies are missing, skipping reload.");
+                        return domainIdFromUrl;
+                    } catch (error) {
+                        console.error('Error extracting domain_id:', error);
+                        return null;
                     }
-                }, 200); // Wait 200ms to ensure cookies are properly set
+                };
         
-            } catch (error) {
-                console.error('❌ Auto login request failed:', error);
-                window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin';
-            }
-        };
+                const extractedDomainId = extractDomainIdFromUrl();
+                console.log('Extracted Domain ID:', extractedDomainId);
+                setDomainId(extractedDomainId);
         
-        
-          
+            const fetchUserData = () => {
+                if (extractedDomainId) {
+                    const apiUrl = `${BASE_URL}/api/api_for_auto_login?action=auto_login&domain_id=${extractedDomainId}`;
+            
+                    console.log("API URL:", apiUrl); // Log the URL to verify
+            
+                    fetch(apiUrl, { method: "GET" })
+                        .then((response) => {
+                            console.log("API Response Status:", response.status);
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+            
+                            return response.json();
+                        })
+                        .then((data) => {
+                            console.log("Received data from API:", data);
+            
+                            if (data) {
+                                // Extract data from API response
+                                const {
+                                    DomainId,
+                                    Name,
+                                    EmailId,
+                                    Department,
+                                    ContactNumber,
+                                    MobileNumber,
+                                    EmpGrade,
+                                    IsActive,
+                                } = data;
+            
+                                // ✅ Store values in cookies WITHOUT encoding
+                                document.cookie = `domain_id=${DomainId}; path=/`;
+                                document.cookie = `userName=${Name}; path=/`;
+                                document.cookie = `email=${EmailId}; path=/`;
+                                document.cookie = `department=${Department}; path=/`;
+                                document.cookie = `contactNumber=${ContactNumber}; path=/`;
+                                document.cookie = `mobileNumber=${MobileNumber}; path=/`;
+                                document.cookie = `empGrade=${EmpGrade}; path=/`;
+                                document.cookie = `isActive=${IsActive}; path=/`;
+            
+                                console.log("Session cookies set successfully!");
+            
+                                // ✅ Log all cookies to verify
+                                console.log("All Cookies:", document.cookie);
+            
+                                // Redirect to main application
+                                navigate("/Main_application/Main_application");
+                            } else {
+                                console.error("Invalid API response format");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("API Error:", error);
+                        });
+                } else {
+                    console.error("Domain ID not found in URL");
+                }
+            };
+            
+    
+            fetchUserData();
+    
+            const pollingInterval = setInterval(() => {
+                const storedUserName = localStorage.getItem('user-name');
+                if (storedUserName !== userName) {
+                    fetchUserData();
+                }
+            }, 5000);
+    
+            return () => clearInterval(pollingInterval);
+        }, [userName, navigate]);
 
-          const handleReload = () => {
-            // Extract the query parameters from the hash
-            const hashParams = window.location.hash.split('?')[1];
-          
-            // Check if the reload query parameter is present
-            if (!hashParams || !hashParams.includes('reload=true')) {
-              const baseHash = window.location.hash.split('?')[0]; // Get the base part of the hash
-              const updatedHash = `${baseHash}?reload=true`;
-          
-              // Update the hash and reload the page
-              window.location.hash = updatedHash;
-              window.location.reload();
-            }
-          };
-
-          useEffect(() => {
-            extractDomainIdFromUrl();
-        }, []);
-
-        
     /* dummy functions */
 
     // Simulated function to retrieve POST data

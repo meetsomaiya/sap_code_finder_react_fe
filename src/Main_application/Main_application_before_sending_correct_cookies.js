@@ -193,8 +193,7 @@ useEffect(() => {
 
                     // Fetch last procured date for each material in the response from the first API
                     dataArray.forEach(item => {
-                        // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
-                        fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(item.material_code)}`)
+                        fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
                             .then(response => response.json())
                             .then(procuredData => {
                                 setLastProcuredData(prevState => ({
@@ -212,8 +211,7 @@ useEffect(() => {
                     });
                 } else {
                     // If no data is returned from the first API, call the second API with the original material code
-                    // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                    fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                    fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                         .then(response => response.json())
                         .then(procuredData => {
                             setLastProcuredData(prevState => ({
@@ -233,8 +231,7 @@ useEffect(() => {
             .catch(error => {
                 console.error('Error fetching alternate table data:', error);
                 // If the first API call fails, still attempt to fetch data from the second API
-                // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                     .then(response => response.json())
                     .then(procuredData => {
                         setLastProcuredData(prevState => ({
@@ -721,9 +718,9 @@ const handleExcelDownload = (materialCode) => {
               if (parts.length === 2) return parts.pop().split(';').shift();
             };
           
-            const adminId = getCookie('domain_id'); // Retrieve the adminId from cookies
+            const adminId = getCookie('userId'); // Retrieve the adminId from cookies
             if (!adminId) {
-             window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin'; 
+             // window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin'; 
             }
           };
 

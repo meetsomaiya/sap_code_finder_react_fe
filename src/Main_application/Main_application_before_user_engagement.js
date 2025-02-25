@@ -11,8 +11,6 @@ import Navbar from '../Navbarr/Navbarr'
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import moment from 'moment-timezone';
-
 import { BASE_URL } from '../config';
 
 const style = {
@@ -54,95 +52,6 @@ export default function MainApplication() {
     const [emailId, setEmailId] = useState('');
 
     const navigate = useNavigate();
-
-    let entryTime = null;  // Store the entry time (when user stepped into the page)
-let exitTime = null;   // Store the exit time (when user left the page)
-
-const sendCookiesToBackend = async () => {
-  const cookies = document.cookie.split(';').reduce((acc, cookie) => {
-    const [key, value] = cookie.trim().split('=');
-    acc[key] = decodeURIComponent(value);
-    return acc;
-  }, {});
-
-  // Get the current pathname when using HashRouter
-  const pathname = window.location.hash.replace(/^#/, '');
-
-  // Prepare the data to send to the backend
-  const cookieData = {
-    name: cookies.name || 'Not Set',
-    domain_id: cookies.domain_id || 'Not Set',
-    pathname: pathname,
-    entryTime: entryTime,
-    exitTime: exitTime,
-  };
-
-  console.log('Validating data before sending to backend:', JSON.stringify(cookieData, null, 2));
-
-  console.log('Sending the following cookie data to backend:', cookieData);
-
-  try {
-    const response = await fetch(`${BASE_URL}/api/heartbeat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(cookieData),
-    });
-
-    if (response.ok) {
-      console.log('Cookie data sent to backend successfully.');
-    } else {
-      console.error('Error sending cookie data to backend:', response.status);
-    }
-  } catch (error) {
-    console.error('Failed to send cookie data:', error);
-  }
-};
-
-useEffect(() => {
-  // Set entry time when the page loads
-  entryTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-  console.log(`Entry Time (IST): ${entryTime}`);
-
-  // Add event listener for beforeunload (browser close / tab close)
-  const handleBeforeUnload = () => {
-    exitTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`Exit Time (IST): ${exitTime}`);
-    sendCookiesToBackend();
-  };
-
-  window.addEventListener('beforeunload', handleBeforeUnload);
-
-  return () => {
-    window.removeEventListener('beforeunload', handleBeforeUnload);
-  };
-}, []);
-
-useEffect(() => {
-  const handlePathChange = () => {
-    exitTime = moment().tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
-    console.log(`Exit Time (IST): ${exitTime}`);
-    sendCookiesToBackend();
-  };
-
-  const windowHistoryPushState = window.history.pushState;
-  window.history.pushState = function (...args) {
-    handlePathChange();
-    return windowHistoryPushState.apply(this, args);
-  };
-
-  const windowHistoryReplaceState = window.history.replaceState;
-  window.history.replaceState = function (...args) {
-    handlePathChange();
-    return windowHistoryReplaceState.apply(this, args);
-  };
-
-  return () => {
-    window.history.pushState = windowHistoryPushState;
-    window.history.replaceState = windowHistoryReplaceState;
-  };
-}, []);
 
 
 
@@ -193,8 +102,7 @@ useEffect(() => {
 
                     // Fetch last procured date for each material in the response from the first API
                     dataArray.forEach(item => {
-                        // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
-                        fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(item.material_code)}`)
+                        fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(item.material_code)}`)
                             .then(response => response.json())
                             .then(procuredData => {
                                 setLastProcuredData(prevState => ({
@@ -212,8 +120,7 @@ useEffect(() => {
                     });
                 } else {
                     // If no data is returned from the first API, call the second API with the original material code
-                    // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                    fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                    fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                         .then(response => response.json())
                         .then(procuredData => {
                             setLastProcuredData(prevState => ({
@@ -233,8 +140,7 @@ useEffect(() => {
             .catch(error => {
                 console.error('Error fetching alternate table data:', error);
                 // If the first API call fails, still attempt to fetch data from the second API
-                // fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
-                fetch(`${BASE_URL}/api/lastprocured?materialCode=${encodeURIComponent(materialCode)}`)
+                fetch(`https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/lastprocured.php?materialCode=${encodeURIComponent(materialCode)}`)
                     .then(response => response.json())
                     .then(procuredData => {
                         setLastProcuredData(prevState => ({
@@ -721,9 +627,9 @@ const handleExcelDownload = (materialCode) => {
               if (parts.length === 2) return parts.pop().split(';').shift();
             };
           
-            const adminId = getCookie('domain_id'); // Retrieve the adminId from cookies
+            const adminId = getCookie('userId'); // Retrieve the adminId from cookies
             if (!adminId) {
-             window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin'; 
+             // window.location.href = 'https://suzoms.suzlon.com/FleetM/#/signin'; 
             }
           };
 

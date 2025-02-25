@@ -5,7 +5,9 @@
 // const BASE_URL='http://localhost:8888/api/';
 // const BASE_URL='http://localhost:223/api/';
 
-const BASE_URL='http://localhost:223';
+// const BASE_URL='http://localhost:223';
+
+const BASE_URL='http://localhost:3001';
 
 // const BASE_URL='https://suzomsapps.suzlon.com/Services/SAPCodeFinderBE/';
 
